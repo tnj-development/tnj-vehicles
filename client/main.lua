@@ -25,3 +25,29 @@ RegisterNetEvent('tnj-vehicles:wheelchair', function()
         end
     end
 end)
+local hoverboard = nil
+
+RegisterNetEvent('tnj-vehicles:hoverboard', function()
+    if QBCore.Functions.HasItem('hoverboard') then
+        if not DoesEntityExist(hoverboard) then
+            local hoverboardModel = 'hoverboard'
+            RequestModel(hoverboardModel)
+            while not HasModelLoaded(hoverboardModel) do
+                Wait(0)
+            end
+            hoverboard = CreateVehicle(hoverboardModel, GetEntityCoords(PlayerPedId()), GetEntityHeading(PlayerPedId()), true, false)
+            SetVehicleOnGroundProperly(hoverboard)
+            SetVehicleNumberPlateText(hoverboard, "BOARD".. math.random(9))
+            SetPedIntoVehicle(PlayerPedId(), hoverboard, -1)
+            SetModelAsNoLongerNeeded(hoverboardModel)
+            local hoverboardPlate = GetVehicleNumberPlateText(hoverboard)
+            TriggerEvent("vehiclekeys:client:SetOwner", hoverboardPlate)
+            SetVehicleEngineOn(vehicle, true, true)
+        elseif DoesEntityExist(hoverboard) and #(GetEntityCoords(hoverboard) - GetEntityCoords(PlayerPedId())) < 3.0 and GetPedInVehicleSeat(hoverboard,-1) == 0 then
+            DeleteVehicle(hoverboard)
+            hoverboard = nil
+        else
+            QBCore.Functions.Notify("You already have a hoverboard out!")
+        end
+    end
+end)
