@@ -1,5 +1,6 @@
-# vehpack-template
-A little template
+# tnj-vehicles
+
+A vehicle pack with use
 
 ## Adding Vehicles
 When adding vehicles I like to create a folder with the vehicle name in the data and stream folders.
