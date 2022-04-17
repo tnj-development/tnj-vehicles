@@ -19,5 +19,5 @@ data_file 'CONTENT_UNLOCKING_META_FILE' 'data/**/*unlocks.meta'
 data_file 'PTFXASSETINFO_FILE' 'data/**/ptfxassetinfo.meta'
 
 shared_script 'config.lua'
-client_script 'client/main.lua
-server_script ' server/main.lua
+client_script 'client/main.lua'
+server_script 'server/main.lua'
